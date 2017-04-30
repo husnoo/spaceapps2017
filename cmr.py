@@ -94,7 +94,7 @@ if 0:
 
 
 # search by latlon
-if 0:
+if 1:
     all_ents = numpy.load("data/all_ents.npz")['arr_0']
     n = len(all_ents)
     lat1 = []
@@ -105,19 +105,21 @@ if 0:
     
     for ent in all_ents:
         try:
-            ids.append(ent['id'])
-            lat1.append(ent['lat1'])
-            lat2.append(ent['lat2'])
-            lon1.append(ent['lon1'])
-            lon2.append(ent['lon2'])
+            x = (ent['id'], ent['lat1'], ent['lat2'], ent['lon1'], ent['lon2'])
         except:
-            pass
+            continue
+        ids.append(ent['id'])
+        lat1.append(ent['lat1'])
+        lat2.append(ent['lat2'])
+        lon1.append(ent['lon1'])
+        lon2.append(ent['lon2'])
+
     numpy.savez('data/index-latlon.npz', ids=numpy.array(ids), lat1=numpy.array(lat1), lat2=numpy.array(lat2),
                 lon1=numpy.array(lon1), lon2=numpy.array(lon2) )
     
 
 # Word frequency
-if 1:
+if 0:
     all_ents = numpy.load("data/all_ents.npz")['arr_0']
     for ent in all_ents:
         try:
@@ -132,6 +134,9 @@ if 1:
 # Demonstration
 
 if 0:
+    import numpy
+
+
     # data by id
     all_ents = numpy.load("data/all_ents.npz")['arr_0']
     the_ents = {}
